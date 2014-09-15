@@ -36,6 +36,10 @@
 
 #include <algorithm>
 
+#ifdef Q_OS_NACL_NEWLIB
+#include <alloca.h>
+#endif
+
 namespace {
 enum { DebugRegAlloc = 0 };
 

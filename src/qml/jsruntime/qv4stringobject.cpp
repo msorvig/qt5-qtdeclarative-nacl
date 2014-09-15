@@ -64,6 +64,9 @@
 #else
 #  include <windows.h>
 #endif
+#ifdef Q_OS_NACL_NEWLIB
+#include <alloca.h>
+#endif
 
 using namespace QV4;
 

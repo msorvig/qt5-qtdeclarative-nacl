@@ -1199,6 +1199,9 @@ bool QQmlImportsPrivate::validateQmldirVersion(const QQmlTypeLoader::QmldirConte
         }
     }
 
+#ifndef Q_OS_NACL
+    // ### This test triggers on NaCl: lowest_min/highest_min do not
+    // get set to senisble values. Disabling allows loading to continue.
     if (lowest_min > vmin || highest_min < vmin) {
         QQmlError error;
         error.setDescription(QQmlImportDatabase::tr("module \"%1\" version %2.%3 is not installed").arg(uri).arg(vmaj).arg(vmin));
@@ -1206,6 +1209,7 @@ bool QQmlImportsPrivate::validateQmldirVersion(const QQmlTypeLoader::QmldirConte
         return false;
     }
 
+#endif
     return true;
 }
 

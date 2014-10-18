@@ -1585,7 +1585,13 @@ QQmlImportDatabase::QQmlImportDatabase(QQmlEngine *e)
 
     // Search order is applicationDirPath(), $QML2_IMPORT_PATH, QLibraryInfo::Qml2ImportsPath
 
+#ifdef Q_OS_NACL
+    // Hardcode the qml imports to "qml/" relative to the app nexe.
+    // This should perhaps be set via Qml2Imports in qt.conf.
+    QString installImportsPath = "qml/";
+#else
     QString installImportsPath =  QLibraryInfo::location(QLibraryInfo::Qml2ImportsPath);
+#endif
     addImportPath(installImportsPath);
 
     // env import paths

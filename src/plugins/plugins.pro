@@ -1,2 +1,2 @@
 TEMPLATE = subdirs
-SUBDIRS +=  qmltooling
+!nacl:SUBDIRS +=  qmltooling
